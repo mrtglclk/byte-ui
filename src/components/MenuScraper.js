@@ -7,6 +7,9 @@ const MenuScraper = () => {
     // Add real API call to scrape menus here
   };
 
+
+
+  
   return (
     <div className="menu-scraper">
       <h2>Scrape Menus</h2>

@@ -5,229 +5,144 @@
   box-sizing: border-box;
 }
 
+
+
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
-  --background-color: #f8fafc;
-  --text-color: #1e293b;
-  --border-radius: 8px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-  --transition: all 0.3s ease;
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --background-color: #ffffff;
+  --text-color: #1f2937;
+  --border-radius: 0.5rem;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
 }
 
 /* Container styles */
-.app-container {
+.container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  min-height: 100vh;
+}
+
+/* Navigation */
+nav {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* Typography */
-h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--text-color);
-  margin-bottom: 1.5rem;
-  text-align: center;
-  letter-spacing: -0.025em;
-  position: relative;
-  padding-bottom: 1rem;
-}
-
-h1::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background: var(--primary-color);
-  border-radius: 2px;
-}
-
-/* Button styles */
-button {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius);
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
-  display: inline-flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: var(--shadow);
 }
 
-button:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
 }
 
-button:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
+.nav-links {
+  display: flex;
+  list-style: none;
 }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.nav-links li {
+  margin-left: 2rem;
 }
 
-/* Section styles */
-.meal-list,
-.menu-scraper,
-.recommendation-engine {
-  background: white;
-  border-radius: var(--border-radius);
-  padding: 2rem;
-  box-shadow: var(--shadow-md);
-  transition: var(--transition);
-  margin: 1.5rem 0;
-}
-
-.meal-list:hover,
-.menu-scraper:hover,
-.recommendation-engine:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* Grid layout for responsive design */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-/* Card styles */
-.card {
-  background: white;
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-sm);
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
   transition: var(--transition);
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+.nav-links a:hover {
+  color: var(--primary-color);
 }
 
-/* Loading animation */
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
+.dropdown {
+  position: relative;
 }
 
-.loading {
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-/* Form elements */
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #e2e8f0;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: var(--shadow);
+  z-index: 1;
+  right: 0;
   border-radius: var(--border-radius);
-  font-size: 1rem;
+  overflow: hidden;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: var(--text-color);
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  display: block;
   transition: var(--transition);
-  margin-bottom: 1rem;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+.dropdown-content a:hover {
+  background-color: #f3f4f6;
 }
 
-/* Alert/notification styles */
-.alert {
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  margin: 1rem 0;
-  border: 1px solid transparent;
+/* Main content */
+main {
+  padding: 2rem 0;
 }
 
-.alert-success {
-  background-color: #ecfdf5;
-  border-color: #059669;
-  color: #065f46;
-}
-
-.alert-error {
-  background-color: #fef2f2;
-  border-color: #dc2626;
-  color: #991b1b;
+/* Footer */
+footer {
+  background-color: var(--text-color);
+  color: white;
+  padding: 1.5rem 0;
+  text-align: center;
 }
 
 /* Responsive design */
-@media (max-width: 768px) {
-  .app-container {
+@media screen and (max-width: 768px) {
+  .container {
     padding: 1rem;
   }
 
-  h1 {
-    font-size: 2rem;
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .grid-container {
-    grid-template-columns: 1fr;
+  .nav-links {
+    flex-direction: column;
+    margin-top: 1rem;
+    width: 100%;
   }
 
-  .meal-list,
-  .menu-scraper,
-  .recommendation-engine {
-    padding: 1.5rem;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: #0f172a;
-    --text-color: #e2e8f0;
-    --primary-color: #3b82f6;
-    --primary-hover: #2563eb;
+  .nav-links li {
+    margin: 0;
+    margin-top: 1rem;
   }
 
-  .meal-list,
-  .menu-scraper,
-  .recommendation-engine,
-  .card {
-    background: #1e293b;
+  .dropdown-content {
+    position: static;
+    display: none;
+    box-shadow: none;
+    background-color: transparent;
+    padding-left: 1rem;
   }
 
-  input,
-  select,
-  textarea {
-    background: #1e293b;
-    border-color: #334155;
-    color: var(--text-color);
+  .dropdown:hover .dropdown-content {
+    display: block;
   }
 }
